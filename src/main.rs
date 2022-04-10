@@ -73,7 +73,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 fn process(filename: &str, size_limit: usize) -> Result<(), Box<dyn Error>> {
     let mut fp = std::fs::File::options()
-        .write(true)
+        .append(true)
         .create(true)
         .open(filename)?;
 
