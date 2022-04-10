@@ -7,7 +7,7 @@ on:
 jobs:
   release:
     name: release
-    runs-on: ${{matrix.os}}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -16,21 +16,11 @@ jobs:
         - i686-unknown-linux-musl
         - x86_64-unknown-linux-gnu
         - x86_64-unknown-linux-musl
-        - arm-unknown-linux-gnueabi
-        - armv7-unknown-linux-gnueabihf
-        include:
-          - target: i686-unknown-linux-gnu
-            os: ubuntu-latest
-          - target: i686-unknown-linux-musl
-            os: ubuntu-latest
-          - target: x86_64-unknown-linux-gnu
-            os: ubuntu-latest
-          - target: x86_64-unknown-linux-musl
-            os: ubuntu-latest
-          - target: arm-unknown-linux-gnueabi
-            os: ubuntu-latest
-          - target: armv7-unknown-linux-gnueabihf
-            os: ubuntu-latest
+        - arm-unknown-linux-gnueabi # v6
+        - arm-unknown-linux-gnueabihf # v6
+        - armv7-unknown-linux-gnueabihf # v7
+        - aarch64-unknown-linux-gnu # arm64
+        - aarch64-unknown-linux-musl
     steps:
     - name: Set env TAG
       run: echo "TAG=$(echo ${GITHUB_REF/refs\/tags\//})" >> $GITHUB_ENV
