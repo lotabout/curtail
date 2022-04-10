@@ -64,7 +64,7 @@ jobs:
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.curtail_TOKEN }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: target/${{matrix.target}}/release/curtail-${{env.TAG}}-${{matrix.target}}.tar.gz
         asset_name: curtail-${{env.TAG}}-${{matrix.target}}.tar.gz
         tag: ${{ github.ref }}
