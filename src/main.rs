@@ -8,6 +8,7 @@ use std::io::{Seek, SeekFrom};
 #[cfg(unix)]
 use std::os::unix::io::AsRawFd;
 use std::path::Path;
+use nix::libc::off_t;
 
 fn print_usage(program: &str, opts: Options) {
     let brief = format!("Usage: {} [options] LOG_FILE", program);
@@ -106,7 +107,7 @@ fn write_with_curtail(
     // collapse the first N blocks to maintain total size limit
     if pos + buf.len() > size_limit {
         let num_blocks = (pos + buf.len() - size_limit + (blksize - 1)) / blksize;
-        let target_offset = (num_blocks * blksize) as i64;
+        let target_offset = (num_blocks * blksize) as off_t;
         fallocate(
             fp.as_raw_fd(),
             FallocateFlags::FALLOC_FL_COLLAPSE_RANGE,
