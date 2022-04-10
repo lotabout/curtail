@@ -64,7 +64,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         return Ok(());
     };
 
-    let filesize_limit = parse_size(&matches.opt_str("s").unwrap_or_else(|| "".to_string()))?;
+    let size_spec = matches.opt_str("s").unwrap_or_else(|| "16K".to_string());
+    let filesize_limit = parse_size(&size_spec)?;
 
     process(&filename, filesize_limit)
 }
