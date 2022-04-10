@@ -36,7 +36,7 @@ jobs:
             os: macOS-latest
     steps:
     - name: Set env TAG
-      run: echo ::set-env name=TAG::$(echo ${GITHUB_REF/refs\/tags\//})
+      run: echo "TAG=$(echo ${GITHUB_REF/refs\/tags\//})" >> $GITHUB_ENV
     - name: Checkout repository
       uses: actions/checkout@v1
       with:
