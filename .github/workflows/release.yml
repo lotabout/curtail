@@ -18,7 +18,6 @@ jobs:
         - x86_64-unknown-linux-musl
         - arm-unknown-linux-gnueabi
         - armv7-unknown-linux-gnueabihf
-        - x86_64-apple-darwin
         include:
           - target: i686-unknown-linux-gnu
             os: ubuntu-latest
@@ -32,8 +31,6 @@ jobs:
             os: ubuntu-latest
           - target: armv7-unknown-linux-gnueabihf
             os: ubuntu-latest
-          - target: x86_64-apple-darwin
-            os: macOS-latest
     steps:
     - name: Set env TAG
       run: echo "TAG=$(echo ${GITHUB_REF/refs\/tags\//})" >> $GITHUB_ENV
